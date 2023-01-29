@@ -57,7 +57,7 @@ jobs:
           OWNER: '${{ github.repository_owner }}'
 
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         context: ./frontend/
         file: ./frontend/Dockerfile
         with:
