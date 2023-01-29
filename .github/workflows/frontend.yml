@@ -28,7 +28,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: vite-files
-          path: frontend/dist/
+          path: |
+            frontend/dist/
+            frontend/Dockerfile
           if-no-files-found: error
   publish:
     runs-on: ubuntu-latest
@@ -56,6 +58,8 @@ jobs:
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
+        context: ./frontend/
+        file: ./frontend/Dockerfile
         with:
           push: true
           tags: |
