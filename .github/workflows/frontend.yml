@@ -28,7 +28,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: vite-files
-          path: ./dist
+          path: dist
+          if-no-files-found: error
   publish:
     runs-on: ubuntu-latest
     needs: build
