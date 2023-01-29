@@ -2,7 +2,7 @@ name: frontend
 on:
   push:
     branches:
-      - master
+      - main
 defaults:
   run:
     working-directory: frontend
