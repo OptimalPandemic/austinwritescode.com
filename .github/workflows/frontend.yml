@@ -58,9 +58,9 @@ jobs:
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v3
-        context: ./frontend/
-        file: ./frontend/Dockerfile
         with:
+          context: ./frontend/
+          file: ./frontend/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ env.OWNER_LC }}/${{ github.event.repository.name }}-frontend:latest
