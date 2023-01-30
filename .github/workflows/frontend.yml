@@ -31,6 +31,7 @@ jobs:
           path: |
             frontend/dist/
             frontend/Dockerfile
+            frontend/nginx.conf
           if-no-files-found: error
   publish:
     runs-on: ubuntu-latest
