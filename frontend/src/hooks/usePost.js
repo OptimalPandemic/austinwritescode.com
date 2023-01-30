@@ -8,7 +8,10 @@ export default function usePost(slug) {
 
     useEffect(() => {
         getPost(slug).then(result => {
-            setPost(result[0].fields)
+            if(result[0]?.fields)
+                setPost(result[0].fields)
+            else
+                setPost({value: 'notfound'});
             setLoading(false)
         });
     }, []);

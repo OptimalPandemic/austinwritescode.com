@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -8,6 +8,7 @@ import { formatDistance } from 'date-fns'
 import  usePost  from '../hooks/usePost';
 import usePosts from '../hooks/usePosts';
 import { subscribe } from '../utils/api';
+import NotFound from '../pages/NotFound';
 
 function Post() {
     const { slug } = useParams();
@@ -17,6 +18,7 @@ function Post() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [buttonText, setButtonText] = useState("Subscribe");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -62,6 +64,10 @@ function Post() {
           };
 
         if (loading) return <p>Loading...</p>
+        else if (post.value == 'notfound') {
+            console.log('This is bad');
+            navigate('/404');
+        }
 
         return (
             <article>

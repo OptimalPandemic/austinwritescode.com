@@ -13,6 +13,7 @@ import AOS from 'aos';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/blog" element={<Blog />} />
         <Route exact path="/blog/:slug" element={<BlogPost />} />
+        <Route path='*' element={<NotFound />}/>
       </Routes>
     </>
   );
