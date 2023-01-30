@@ -80,4 +80,5 @@ jobs:
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/optimalpandemic/${{ github.event.repository.name }}-frontend:latest
             docker kill austinwritescode.com-frontend
+            docker rm austinwritescode.com-frontend
             docker run -d -p 8080:80 --name austinwritescode.com-frontend ghcr.io/optimalpandemic/${{ github.event.repository.name }}-frontend
