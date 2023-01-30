@@ -24,6 +24,14 @@ jobs:
       - name: Build project
         run: npm run build
       
+      - name: Create .env
+        uses: iamsauravsharma/create-dotenv@v1.2.2
+        with:
+          directory: 'frontend/' # Optional (default: '.')
+        env:
+          VITE_CONTENTFUL_SPACE_ID: ${{ vars.VITE_CONTENTFUL_SPACE_ID }}
+          VITE_CONTENTFUL_ACCESS_TOKEN: ${{ vars.VITE_CONTENTFUL_ACCESS_TOKEN }}
+      
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -32,6 +40,7 @@ jobs:
             frontend/dist/
             frontend/Dockerfile
             frontend/nginx.conf
+            frontend/.env
           if-no-files-found: error
   publish:
     runs-on: ubuntu-latest
