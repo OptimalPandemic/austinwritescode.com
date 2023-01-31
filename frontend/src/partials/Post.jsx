@@ -107,7 +107,7 @@ function Post() {
 
                         {/* Article body */}
                         <div>
-                            <Markdown children={post.body} className="prose lg:prose-xl" components={CodeBlock} />
+                            <Markdown children={post.body} className="prose" components={CodeBlock} />
                             <form className="w-full max-w-lg md:pb-10 mt-20 mx-auto" onSubmit={handleSubmit}>
                                 <h2 className="text-md font-bold mb-4">Want to get updates when I post? Subscribe to my mailing list!</h2>
                                 <div className="relative">
