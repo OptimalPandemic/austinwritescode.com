@@ -18,6 +18,8 @@ function Post() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [buttonText, setButtonText] = useState("Subscribe");
+    const [buttonBgColor, setButtonBgColor] = useState("bg-blue-700");
+    const [buttonHoverBgColor, setButtonHoverBgColor] = useState("bg-blue-800");
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -30,13 +32,21 @@ function Post() {
         e.preventDefault();
         setInputDisabled(true);
         setButtonDisabled(true);
+        setButtonBgColor("bg-blue-700");
+        setButtonHoverBgColor("bg-blue-800");
+        setButtonText('Subscribing...');
         try {
             await subscribe(inputs);
-            setButtonText('Subscribed!')
+            setButtonBgColor("bg-green-700");
+            setButtonHoverBgColor("bg-green-800");
+            setButtonText('Subscribed!');
         }
         catch (err) {
+            console.log(err);
             setInputDisabled(false);
             setButtonDisabled(false);
+            setButtonBgColor("bg-red-700");
+            setButtonHoverBgColor("bg-red-800");
             setButtonText('Try Again');
         }
     }
@@ -112,7 +122,7 @@ function Post() {
                                 <h2 className="text-md font-bold mb-4">Want to get updates when I post? Subscribe to my mailing list!</h2>
                                 <div className="relative">
                                     <input type="email" id="email" name="email" className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="john@example.com" required onChange={handleChange} disabled={inputDisabled} />
-                                    <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled={buttonDisabled} >{buttonText}</button>
+                                    <button type="submit" className={`text-white absolute right-2.5 bottom-2.5 ${buttonBgColor} hover:${buttonHoverBgColor} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2`} disabled={buttonDisabled} >{buttonText}</button>
                                 </div>
                             </form>
                         </div>

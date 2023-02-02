@@ -13,6 +13,8 @@ function BlogList() {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [inputDisabled, setInputDisabled] = useState(false);
     const [buttonText, setButtonText] = useState("Subscribe");
+    const [buttonBgColor, setButtonBgColor] = useState("bg-blue-700");
+    const [buttonHoverBgColor, setButtonHoverBgColor] = useState("bg-blue-800");
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -24,13 +26,21 @@ function BlogList() {
         e.preventDefault();
         setInputDisabled(true);
         setButtonDisabled(true);
+        setButtonBgColor("bg-blue-700");
+        setButtonHoverBgColor("bg-blue-800");
+        setButtonText('Subscribing...');
         try {
             await subscribe(inputs);
-            setButtonText('Subscribed!')
+            setButtonBgColor("bg-green-700");
+            setButtonHoverBgColor("bg-green-800");
+            setButtonText('Subscribed!');
         }
         catch (err) {
+            console.log(err);
             setInputDisabled(false);
             setButtonDisabled(false);
+            setButtonBgColor("bg-red-700");
+            setButtonHoverBgColor("bg-red-800");
             setButtonText('Try Again');
         }
     }
@@ -87,13 +97,13 @@ function BlogList() {
                     {/* Page header */}
                     <div className="max-w-3xl md:pb-12 pb-8 text-center md:text-left">
                         <h1 className="h1 mb-4">Code, Deploy, Repeat</h1>
-                        <p className="text-xl text-gray-600">Join me as I navigate the world of software engineering and DevOps, sharing tips, tricks, and a hopefully a fresh perspective along the way.</p>
+                        <p className="text-xl text-gray-600">Join me as I navigate the world of software engineering and DevOps, sharing tips, tricks, and a hopefully a fresh perspective along the way. I also write about C, because I use it and I find the existing world of C content lacking.</p>
                     </div>
                     <form className="w-full lg:max-w-lg max-w-xs md:pb-20 pb-10 mx-auto" onSubmit={handleSubmit}>
                         <h2 className="text-md mb-4">Want to get updates when I post? Subscribe to my mailing list!</h2>
                         <div className="relative">
                             <input type="email" id="email" name="email" className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="john@example.com" required onChange={handleChange} disabled={inputDisabled} />
-                            <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled={buttonDisabled} >{buttonText}</button>
+                            <button type="submit" className={`text-white absolute right-2.5 bottom-2.5 ${buttonBgColor} hover:${buttonHoverBgColor} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2`} disabled={buttonDisabled} >{buttonText}</button>
                         </div>
                     </form>
 

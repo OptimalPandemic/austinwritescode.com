@@ -1,0 +1,19 @@
+{
+    "name": "austinwritescode-api",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    },
+    "dependencies": {
+        "@hubspot/api-client": "^8.4.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^5.0.0-beta.1",
+        "express-validator": "^6.14.3",
+        "winston": "^3.8.2"
+    }
+}
