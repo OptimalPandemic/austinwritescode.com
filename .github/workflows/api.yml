@@ -43,7 +43,7 @@ jobs:
             ghcr.io/${{ env.OWNER_LC }}/${{ github.event.repository.name }}-api:latest
   deploy:
     runs-on: ubuntu-latest
-    needs: publish
+    needs: build
     steps:
       - name: Run script
         uses: appleboy/ssh-action@v0.1.7
